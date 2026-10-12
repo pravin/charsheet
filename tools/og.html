@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Charsheet OG image</title>
+<link rel="preload" href="../fonts/IBMPlexMono-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../fonts/IBMPlexMono-SemiBold.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../style.css">
+<style>
+  html, body { width: 1200px; height: 630px; overflow: hidden; }
+  .og { position: relative; display: grid; grid-template-columns: 520px 1fr; gap: 40px; padding: 56px 0 0 64px; height: 630px; }
+  .og h1 { font-size: 54px; margin: 18px 0 22px; max-width: 11ch; }
+  .og p { font: 21px/1.5 var(--sans); color: var(--ink2); margin: 0; max-width: 26ch; }
+  .og .url { position: absolute; left: 64px; bottom: 50px; font: 500 20px var(--mono); color: var(--amber); }
+  .og .url span { color: var(--ink3); }
+  .og .card { width: 620px; padding: 14px; height: 640px; overflow: hidden; }
+</style>
+</head>
+<body data-mode="sheet">
+<div class="og">
+  <div>
+    <p class="label" style="font-size:14px;white-space:nowrap">Hollowmoon · character sheet</p>
+    <h1>What would your GitHub be in a roguelike?</h1>
+    <p>Race, profession, level, nine attributes, and your repos as enchanted gear.</p>
+    <div class="url">pravin.github.io/<span>charsheet</span></div>
+  </div>
+  <div class="card frame"><div class="sheet-box"><pre id="card" class="sheet"></pre></div></div>
+</div>
+<script type="module">
+  import { toCharacter } from "../js/mapping.js";
+  import { buildRows, rowsToHTML } from "../js/card.js";
+  import { SAMPLE } from "../js/sample.js";
+  const ch = toCharacter(SAMPLE.user, SAMPLE.repos, SAMPLE.at);
+  document.getElementById("card").innerHTML = rowsToHTML(buildRows(ch, null));
+</script>
+</body>
+</html>
